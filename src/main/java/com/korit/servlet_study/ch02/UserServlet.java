@@ -22,6 +22,20 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // username == "test"
+        // 찾으면 User객체 응답(200), 못찾으면 해당 username은 존재하지 않습니다. (404)
+        List<User> foundUsers = users.stream()
+                .filter(user -> user.getUsername().equals(req.getParameter("username")))
+                .toList();
+
+        User foundUser = foundUsers.isEmpty() ? null : foundUsers.get(0);
+
+        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
+        if (Objects.isNull(foundUser)) {
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            resp.getWriter().println("해당 username은 존재하지 않습니다.");
+            return;
+        }
+        resp.getWriter().println(foundUser);
     }
 
     @Override

@@ -1,0 +1,55 @@
+EncodingFilter :
+    요청, 응답 문자 인코딩 -> UTF-8
+BoardServlet
+    URL: /ch07/boards
+    POST :
+         JSON 형식으로 요청 데이터를 받아온다.
+         {
+            "title" : "제목1",
+            "content" : "내용1",
+            "writer" : "작성자1"
+         }
+         Board 객체 정의
+         BoardRepository를 통해 Board 여러개 추가, 조회 가능
+         응답 Response 객체 정의 JSON으로 응답
+         {
+            "message" : "게시글 작성 완료"
+         }
+
+    GET : 모든 Board 객체들을 조회
+    응답 Board 리스트를 JSON으로 응답
+
+    ==== 뭘만드냐 > 웹백엔드로 이 데이터를 관리하겠다 를 생각하고 해야한다..
+    ㄴCRUD
+
+    보드(게시글)
+    title
+    content
+    writer
+    ㄴ 클래스
+    ------------
+    리스트<게시글>
+
+ ★400번 -> 클라이언트 잘못 / BadRequest
+ ★500번 -> 서버 잘못 / BadResponse
+ ㄴ기억하기
+
+1.단방향
+
+2. 메서드
+ㄴ추가 , 조회
+post , set
+
+3. url -> 서블릿 @WebServlet("/ch08/board") << ("/여기다가")
+
+4. 요청 데이터 형식 >> JAVA
+
+
+    +
+
+    HTTP 프로토콜 = (양식) 인터페이스
+    특징 : 단방향 통신 > 한쪽에서만 보냄 (요청데이터)
+
+    [A] [B]   A - > B 에게 보냄 , B는 아직 받지못함 , B가 나한테 온거 있니? 확인시 확인 가능
+      [C]
+
